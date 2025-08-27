@@ -1,0 +1,7 @@
+<!-- favicon.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- fundo com cantos arredondados -->
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="#ff6600"/>
+  <!-- monograma V -->
+  <path d="M18 22l14 28 14-28h-7.5L32 38.5 25.5 22H18z" fill="#ffffff"/>
+</svg>

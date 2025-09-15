@@ -152,32 +152,48 @@ body {
 
 .cursos {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px 12px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px; 
 }
 
 .cursos .education-item {
-  border: 1px solid #ff6600;
-  border-radius: 4px;
-  padding: 6px 8px;
-  background: #fff;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ff6600;
+  border-radius: 8px;
+  padding: 6px 12px;
+  background: #fff;
+  font-size: 13px;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Ícone de selo */
+.cursos .education-item::before {
+  content: "🎓"; 
+  color: #ff6600;
+  font-size: 15px;
+  margin-right: 8px;
+}
+
+.cursos .education-item p {
+  margin: 0;
 }
 
 .cursos .education-item p:first-child {
   font-weight: 600;
-  font-size: 12.5px;
   color: #ff6600;
-  margin: 0;
+  flex: 1;
 }
 
 .cursos .education-item p:last-child {
-  font-size: 11px;
-  color: #555;
-  margin: 0;
+  font-size: 12px;
+  color: #666;
+  margin-left: 12px;
+  white-space: nowrap;
 }
+
 
 /* ===== Habilidades ===== */
 .skills {

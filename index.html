@@ -39,8 +39,8 @@
     margin:24px auto;
     background:var(--paper);
     box-shadow:0 8px 40px rgba(0,0,0,.25);
-    display:grid;
-    grid-template-columns:66mm 1fr;
+    display:flex;
+    align-items:stretch;
   }
 
   /* ---------- SIDEBAR ---------- */
@@ -48,6 +48,8 @@
     background:var(--sidebar);
     color:#eef1f6;
     padding:11mm 8mm;
+    width:66mm;
+    flex:0 0 66mm;
   }
 
   .sidebar .avatar{
@@ -112,7 +114,7 @@
   .lang-row span:last-child{color:var(--accent);font-family:var(--mono);font-size:7.6pt;}
 
   /* ---------- MAIN ---------- */
-  .main{padding:11mm 12mm;}
+  .main{padding:11mm 12mm; flex:1 1 auto; min-width:0;}
 
   .path{
     font-family:var(--mono);
@@ -174,8 +176,7 @@
   .job.compact{opacity:.92;}
 
   .flagship{
-    display:grid;
-    grid-template-columns:1fr 1fr;
+    display:flex;
     gap:4mm;
     margin-top:2mm;
   }
@@ -185,6 +186,8 @@
     border-radius:4px;
     padding:3.5mm 4mm;
     background:#fff;
+    flex:1 1 0;
+    min-width:0;
   }
   .flagship-card .name{
     font-family:var(--disp);
@@ -383,15 +386,43 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
-    function gerarPDF(){
+    function esperarImagens(el){
+      const imgs = Array.from(el.querySelectorAll('img'));
+      return Promise.all(imgs.map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(res => { img.onload = res; img.onerror = res; });
+      }));
+    }
+
+    async function gerarPDF(){
       const el = document.getElementById('resume');
       const btn = document.querySelector('.print-btn');
       btn.style.display = 'none';
+
+      // Garante que fontes e imagens carregaram antes de capturar,
+      // senão o html2canvas tira a "foto" com a página incompleta.
+      if (document.fonts && document.fonts.ready) {
+        await document.fonts.ready;
+      }
+      await esperarImagens(el);
+
+      // Largura fixa em pixels (210mm a 96dpi) evita que o html2canvas
+      // recalcule o layout com uma largura diferente da tela, o que
+      // é a causa mais comum do PDF sair "diferente" da página.
+      const larguraPxA4 = 794;
+
       html2pdf().set({
         margin: 0,
         filename: 'Curriculo-Vanrley-Macedo.pdf',
         image: { type: 'jpeg', quality: 1 },
-        html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          scrollX: 0,
+          scrollY: 0,
+          windowWidth: larguraPxA4,
+          width: larguraPxA4
+        },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
         pagebreak: { mode: ['css', 'legacy'] }
       }).from(el).save().finally(() => { btn.style.display = 'block'; });

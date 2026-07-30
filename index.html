@@ -1,319 +1,401 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Currículo Vanrley Macedo</title>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Currículo — Vanrley Macedo</title>
+<meta name="description" content="Vanrley Macedo — Desenvolvedor Full Stack. PHP, MySQL, MongoDB, React Native, TypeScript." />
 
-    <!-- Css do curriculo -->
-    <link rel="stylesheet" href="resume.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<style>
+  :root{
+    --ink:#152238;
+    --ink-soft:#2c3e5c;
+    --sidebar:#122036;
+    --sidebar-soft:#8fa3c4;
+    --paper:#fbfaf7;
+    --line:#e4e0d6;
+    --accent:#e0973a;
+    --accent-soft:#f3d9ae;
+    --mono:'JetBrains Mono', monospace;
+    --disp:'Space Grotesk', sans-serif;
+    --body:'Inter', sans-serif;
+  }
 
-    <!-- Fonte moderna: Poppins e Sora -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Sora:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- SEO Básico -->
-    <meta
-      name="description"
-      content="Currículo de Vanrley Macedo - Desenvolvedor Full Stack, especialista em React, React Native, PHP, MongoDB e soluções modernas para web e mobile."
-    />
-    <meta
-      name="keywords"
-      content="Vanrley Macedo, Desenvolvedor Full Stack, React, React Native, PHP, MongoDB, Expo, JavaScript, Tailwind, Programador, Currículo, Portfólio"
-    />
-    <meta name="author" content="Vanrley Macedo" />
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:#d9d5c9;
+    font-family:var(--body);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
 
-    <!-- Open Graph (para Facebook, LinkedIn, etc.) -->
-    <meta property="og:title" content="Currículo - Vanrley Macedo" />
-    <meta
-      property="og:description"
-      content="Desenvolvedor Full Stack com experiência em React, React Native, PHP e MongoDB. Veja minhas habilidades e experiência."
-    />
-    <meta property="og:image" content="Macbook-Air-127.0.0.1.png" />
-    <meta property="og:url" content="https://seusite.com/curriculo" />
-    <meta property="og:type" content="website" />
+  .page{
+    width:210mm;
+    min-height:297mm;
+    margin:24px auto;
+    background:var(--paper);
+    box-shadow:0 8px 40px rgba(0,0,0,.25);
+    display:grid;
+    grid-template-columns:66mm 1fr;
+  }
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Currículo - Vanrley Macedo" />
-    <meta
-      name="twitter:description"
-      content="Desenvolvedor Full Stack com experiência em React, React Native, PHP e MongoDB."
-    />
-    <meta name="twitter:image" content="Macbook-Air-127.0.0.1.png" />
-  </head>
-  <body>
-    <div class="resume skeleton-active" id="resume">
-      <div class="header">
+  /* ---------- SIDEBAR ---------- */
+  .sidebar{
+    background:var(--sidebar);
+    color:#eef1f6;
+    padding:11mm 8mm;
+  }
+
+  .sidebar .avatar{
+    width:30mm;
+    height:30mm;
+    border-radius:6px;
+    overflow:hidden;
+    border:2px solid var(--accent);
+    margin-bottom:6mm;
+  }
+  .sidebar .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  .sidebar h1{
+    font-family:var(--disp);
+    font-size:16.5pt;
+    line-height:1.15;
+    margin:0 0 2mm;
+    color:#fff;
+  }
+  .role-tag{
+    font-family:var(--mono);
+    font-size:8pt;
+    color:var(--accent);
+    letter-spacing:.03em;
+    margin-bottom:8mm;
+    display:block;
+  }
+
+  .side-block{margin-bottom:8mm;}
+  .side-block h2{
+    font-family:var(--mono);
+    font-size:8pt;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--sidebar-soft);
+    margin:0 0 3mm;
+    padding-bottom:2mm;
+    border-bottom:1px solid rgba(255,255,255,.15);
+  }
+
+  .contact-list{list-style:none;margin:0;padding:0;font-size:8.6pt;line-height:1.7;}
+  .contact-list li{display:flex;gap:2mm;color:#dfe4ee;}
+  .contact-list li b{color:var(--accent);font-family:var(--mono);font-weight:500;min-width:3mm;}
+
+  .tag-cloud{display:flex;flex-wrap:wrap;gap:1.6mm;}
+  .tag{
+    font-family:var(--mono);
+    font-size:7.6pt;
+    color:#0e1929;
+    background:var(--accent-soft);
+    padding:1.4mm 2.4mm;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+  .tag.alt{background:rgba(255,255,255,.12);color:#eef1f6;}
+
+  .edu-item{margin-bottom:3.5mm;font-size:8.6pt;line-height:1.5;}
+  .edu-item .t{color:#fff;font-weight:600;}
+  .edu-item .d{color:var(--sidebar-soft);font-family:var(--mono);font-size:7.6pt;}
+
+  .lang-row{display:flex;justify-content:space-between;font-size:8.6pt;margin-bottom:2mm;color:#dfe4ee;}
+  .lang-row span:last-child{color:var(--accent);font-family:var(--mono);font-size:7.6pt;}
+
+  /* ---------- MAIN ---------- */
+  .main{padding:11mm 12mm;}
+
+  .path{
+    font-family:var(--mono);
+    font-size:7.6pt;
+    color:var(--ink-soft);
+    margin:0 0 6mm;
+    letter-spacing:.02em;
+  }
+  .path span{color:var(--accent);}
+
+  .main h2{
+    font-family:var(--disp);
+    font-size:11pt;
+    color:var(--ink);
+    margin:0 0 3mm;
+    display:flex;
+    align-items:baseline;
+    gap:2.5mm;
+  }
+  .main h2::before{
+    content:'';
+    width:5.5mm;
+    height:2.2px;
+    background:var(--accent);
+    display:inline-block;
+  }
+
+  .section{margin-bottom:7mm;}
+
+  .summary{
+    font-size:9.3pt;
+    line-height:1.6;
+    color:var(--ink-soft);
+    margin:0;
+  }
+
+  .job{margin-bottom:5.5mm;}
+  .job:last-child{margin-bottom:0;}
+  .job-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:2mm;
+    margin-bottom:1.2mm;
+  }
+  .job-title{font-family:var(--disp);font-weight:600;font-size:9.6pt;color:var(--ink);}
+  .job-time{font-family:var(--mono);font-size:7.6pt;color:var(--accent);background:#fbf1e2;padding:.8mm 2mm;border-radius:3px;}
+  .job-org{font-size:8.4pt;color:var(--ink-soft);font-weight:600;margin-bottom:1.8mm;}
+
+  .job ul{margin:0;padding-left:4mm;}
+  .job li{font-size:8.7pt;line-height:1.55;color:var(--ink-soft);margin-bottom:1mm;}
+  .job li::marker{color:var(--accent);}
+
+  .job-tags{display:flex;flex-wrap:wrap;gap:1.4mm;margin-top:2mm;}
+  .job-tags .tag{background:#eef1f6;color:var(--ink-soft);}
+
+  .job.compact .job-title{font-size:9pt;}
+  .job.compact{opacity:.92;}
+
+  .flagship{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4mm;
+    margin-top:2mm;
+  }
+  .flagship-card{
+    border:1px solid var(--line);
+    border-left:2.5px solid var(--accent);
+    border-radius:4px;
+    padding:3.5mm 4mm;
+    background:#fff;
+  }
+  .flagship-card .name{
+    font-family:var(--disp);
+    font-weight:600;
+    font-size:8.8pt;
+    color:var(--ink);
+    margin-bottom:1mm;
+  }
+  .flagship-card p{
+    font-size:8pt;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin:0 0 2mm;
+  }
+
+  .older-roles{margin-top:4mm;padding-top:3mm;border-top:1px dashed var(--line);}
+  .older-roles h3{
+    font-family:var(--mono);
+    font-size:7.6pt;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--ink-soft);
+    margin:0 0 2.5mm;
+  }
+  .older-grid{display:flex;flex-direction:column;gap:1.6mm;}
+  .older-row{display:flex;justify-content:space-between;font-size:8.2pt;color:var(--ink-soft);}
+  .older-row b{color:var(--ink);font-weight:600;}
+  .older-row span{font-family:var(--mono);font-size:7.4pt;color:#9aa7bd;}
+
+  .print-btn{
+    position:fixed;
+    top:16px;
+    right:16px;
+    z-index:50;
+  }
+  .print-btn button{
+    font-family:var(--body);
+    font-weight:600;
+    font-size:13px;
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    padding:11px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+  }
+  .print-btn button:hover{background:var(--accent);color:#152238;}
+
+  @media print{
+    body{background:#fff;}
+    .page{box-shadow:none;margin:0;width:210mm;min-height:297mm;}
+    .print-btn{display:none !important;}
+  }
+
+  @media (max-width:800px){
+    .page{width:100%;grid-template-columns:1fr;}
+    .flagship{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="page" id="resume">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="avatar">
         <img src="https://i.postimg.cc/c4KT32d3/Gemini-Generated-Image-ibv3gvibv3gvibv3.png" alt="Vanrley Macedo" />
-        <div class="info">
-          <h1>Vanrley Macedo</h1>
+      </div>
 
-          <p class="personal-info">
-            <span class="cnh-badge">25 anos</span>
-            <span class="cnh-badge">CNH B Definitiva</span>
-          </p>
+      <h1>Vanrley<br/>Macedo</h1>
+      <span class="role-tag">// desenvolvedor full stack</span>
 
-          <p class="contact-info">
-            (98) 97018-0089 | (98) 98582-1937 | vntecnologialtda@gmail.com
-          </p>
+      <div class="side-block">
+        <h2>Contato</h2>
+        <ul class="contact-list">
+          <li><b>T</b> (98) 97018-0089</li>
+          <li><b>T</b> (98) 98582-1937</li>
+          <li><b>@</b> vntecnologialtda@gmail.com</li>
+          <li><b>L</b> Paço do Lumiar / São Luís — MA</li>
+        </ul>
+      </div>
 
-          <p class="address-info">
-           RUA 23 | QUADRA 59 | BAIRRO CIDADE VERDE 2 | PAÇO DO LUMIAR MA
-           
-          </p>
+      <div class="side-block">
+        <h2>Stack principal</h2>
+        <div class="tag-cloud">
+          <span class="tag">PHP</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">React Native</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Expo</span>
+          <span class="tag">Tailwind</span>
+          <span class="tag">Bootstrap</span>
+          <span class="tag">CSS</span>
+          <span class="tag">Git</span>
         </div>
       </div>
 
-      <div class="section">
-        <h2><span></span>Perfil e Objetivos</h2>
-        <p>
-          Contribuir de forma significativa para o crescimento da empresa,
-          aplicando minhas habilidades e experiências para resolver desafios de
-          maneira criativa e eficiente. Busco oportunidades para aprender,
-          colaborar com equipes diversas e desenvolver soluções que gerem
-          impacto positivo, aprimorando continuamente minhas competências e
-          alcançando resultados de excelência.
+      <div class="side-block">
+        <h2>Formação</h2>
+        <div class="edu-item">
+          <div class="t">Análise e Desenvolvimento de Sistemas</div>
+          <div class="d">Descomplica Faculdade · 2024–2026 (em curso)</div>
+        </div>
+        <div class="edu-item">
+          <div class="t">Ensino Médio Completo</div>
+        </div>
+      </div>
+
+      <div class="side-block">
+        <h2>Cursos complementares</h2>
+        <div class="tag-cloud">
+          <span class="tag alt">Backend Developer</span>
+          <span class="tag alt">Lógica de Programação</span>
+          <span class="tag alt">DevOps Strategist</span>
+          <span class="tag alt">Programmer</span>
+        </div>
+      </div>
+
+      <div class="side-block">
+        <h2>Perfil</h2>
+        <div class="lang-row"><span>CNH B</span><span>Definitiva</span></div>
+        <div class="lang-row"><span>Idade</span><span>25 anos</span></div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <p class="path">~/vanrley-macedo/<span>curriculo.tsx</span></p>
+
+      <section class="section">
+        <h2>Resumo</h2>
+        <p class="summary">
+          Desenvolvedor Full Stack com foco em produtos que unem backend em PHP/MySQL/MongoDB
+          a aplicações React Native para mobile e TV. Atua do banco de dados à interface,
+          construindo painéis administrativos SaaS, apps para Android TV e sistemas de
+          autenticação e billing usados em produção. Gosta de resolver problemas de ponta a
+          ponta e entregar código direto, testado e pronto para uso.
         </p>
-      </div>
+      </section>
 
-      <div class="section">
-        <h2><span></span>Experiência Profissional</h2>
-        <div class="experience">
-          <div class="experience-item">
-            <p>
-              <strong>Programador Full Stack</strong><br />
-              1 ano e 10 meses
-            </p>
-            <p>
-              JOIN PARTNERS TECNOLOGIA LTDA
-            </p>
+      <section class="section">
+        <h2>Experiência</h2>
+
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">Programador Full Stack</span>
+            <span class="job-time">1 ano e 10 meses</span>
           </div>
-          <div class="experience-item">
-            <p><strong>Tec de Laboratório</strong><br />3 anos</p>
-            <p>TELECOMUNICAÇÕES NORDESTE LTDA</p>
-          </div>
-          <div class="experience-item">
-            <p><strong>Tec de Rede Interna II</strong><br />3 anos</p>
-            <p>TELECOMUNICAÇÕES NORDESTE LTDA</p>
-          </div>
-          <div class="experience-item">
-            <p><strong>Tec Informática B</strong><br />9 meses</p>
-            <p>C.D SOUZA DE MELO FARIAS LTDA</p>
-          </div>
-          <div class="experience-item">
-            <p><strong>Auxiliar Eletromecânico</strong><br />6 meses</p>
-            <p>RDS INSTALAÇÕES ELÉTRICA LTDA</p>
+          <div class="job-org">Join Partners Tecnologia LTDA</div>
+          <ul>
+            <li>Desenvolvimento full stack de um painel SaaS (PHP + MySQL/MongoDB) para gestão de dispositivos, créditos e conteúdo, incluindo autenticação, recuperação de senha e branding dinâmico por cliente.</li>
+            <li>Construção de um app launcher para Android TV em React Native/TypeScript, com carrossel de banners promocionais, cache de sessão local e sincronização em segundo plano com a API.</li>
+            <li>Criação de módulo reutilizável de paginação e ordenação de tabelas, padronizando UI entre múltiplas telas do painel administrativo.</li>
+            <li>Implementação de scraper de metadados da Play Store (cURL/DOMDocument) com painel de diagnóstico para falhas do lado do servidor.</li>
+            <li>Manutenção de plataforma white-label baseada em MongoDB, com configuração dinâmica por origem/cliente e compatibilidade PHP 7.x.</li>
+          </ul>
+          <div class="job-tags">
+            <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">MongoDB</span>
+            <span class="tag">React Native</span><span class="tag">TypeScript</span><span class="tag">REST API</span>
           </div>
         </div>
-      </div>
 
-      <div class="section">
-        <h2><span></span>Educação</h2>
-        <div class="education">
-          <div class="education-item">
-            <p>
-              <strong>Análise e Desenvolvimento de Sistemas</strong
-              ><br />18/2024 - 18/2026
-            </p>
-            <p>Descomplica Faculdade</p>
+        <div class="flagship">
+          <div class="flagship-card">
+            <div class="name">PanelNix</div>
+            <p>Painel administrativo SaaS em PHP para gestão de dispositivos, créditos, banners e clientes, com dashboards, relatórios e sistema de temas por marca.</p>
+          </div>
+          <div class="flagship-card">
+            <div class="name">Vlauncher</div>
+            <p>Launcher Android TV em React Native/TypeScript, com carregamento de conteúdo em cache, banners promocionais e reconexão automática de rede.</p>
           </div>
         </div>
-      </div>
 
-      <div class="section">
-        <h2><span></span>Formação Básica</h2>
-        <div
-          class="education"
-          style="display: flex; flex-wrap: wrap; gap: 15px"
-        >
-          <div
-            class="education-item"
-            style="
-              flex: 1 1 250px;
-              background: #fff;
-              border: 1px solid #ddd;
-              border-radius: 12px;
-              padding: 12px 20px;
-              display: flex;
-              align-items: center;
-              gap: 12px;
-            "
-          >
-            <div
-              style="
-                width: 36px;
-                height: 36px;
-                background: #ff6600;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #fff;
-                font-size: 18px;
-              "
-            >
-              🎓
-            </div>
-            <p style="margin: 0; font-size: 14px">
-              Ensino Médio Completo
-            </p>
+        <div class="older-roles">
+          <h3>Experiências anteriores</h3>
+          <div class="older-grid">
+            <div class="older-row"><b>Técnico de Rede Interna II</b> — Telecomunicações Nordeste LTDA <span>3 anos</span></div>
+            <div class="older-row"><b>Técnico de Laboratório</b> — Telecomunicações Nordeste LTDA <span>3 anos</span></div>
+            <div class="older-row"><b>Técnico de Informática B</b> — C.D Souza de Melo Farias LTDA <span>9 meses</span></div>
+            <div class="older-row"><b>Auxiliar Eletromecânico</b> — RDS Instalações Elétricas LTDA <span>6 meses</span></div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <br /><br />
+    </main>
+  </div>
 
-      <div class="section">
-        <h2><span></span>Cursos</h2>
-        <div class="education cursos">
-          <div class="education-item">
-            <p><strong>Full Stack</strong></p>
-            <p>Faculdade Descomplica</p>
-          </div>
-          <div class="education-item">
-            <p><strong>Lógica de Programação</strong></p>
-            <p>Tryber</p>
-          </div>
-          <div class="education-item">
-            <p><strong>Backend Developer</strong></p>
-            <p>Faculdade Descomplica</p>
-          </div>
-          <div class="education-item">
-            <p><strong>Programmer</strong></p>
-            <p>Faculdade Descomplica</p>
-          </div>
-          <div class="education-item">
-            <p><strong>DevOps Strategist</strong></p>
-            <p>Faculdade Descomplica</p>
-          </div>
-          <div class="education-item">
-            <p><strong>Técnico de fibra IOT 2.0</strong></p>
-            <p>Fiberschool</p>
-          </div>
-          <div class="education-item">
-            <p><strong>Fibra óptica do zero</strong></p>
-            <p>Fiberschool</p>
-          </div>
-        </div>
-      </div>
+  <div class="print-btn">
+    <button onclick="gerarPDF()">Baixar PDF</button>
+  </div>
 
-      <div class="section">
-        <h2><span></span>Habilidades</h2>
-        <div class="skills">
-          <div class="skill">
-            <span>CSS</span>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 90%"></div>
-            </div>
-          </div>
-          <div class="skill">
-            <span>JavaScript</span>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 85%"></div>
-            </div>
-          </div>
-          <div class="skill">
-            <span>Tailwind</span>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 90%"></div>
-            </div>
-          </div>
-          <div class="skill">
-            <span>Bootstrap</span>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 95%"></div>
-            </div>
-          </div>
-          <div class="skill">
-            <span>PHP</span>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 90%"></div>
-            </div>
-          </div>
-          <div class="skill">
-            <span>MongoDB</span>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 85%"></div>
-            </div>
-          </div>
-          <div class="skill">
-            <span>Expo</span>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 85%"></div>
-            </div>
-          </div>
-          <div class="skill">
-            <span>React Native</span>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 85%"></div>
-            </div>
-          </div>
-          <div class="skill">
-            <span>React</span>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 80%"></div>
-            </div>
-          </div>
-          <div class="skill">
-            <span>Equipe</span>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 100%"></div>
-            </div>
-          </div>
-          <div class="skill">
-            <span>Aprendizagem</span>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 95%"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Seção de WhatsApp com QR Code estilizado -->
-  
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-      <script>
-        function gerarPDF() {
-          const elemento = document.getElementById("resume");
-          const botao = document.querySelector(".print-btn");
-
-          botao.style.display = "none";
-
-          html2pdf()
-            .set({
-              margin: [10, 10, 10, 10],
-              filename: "Curriculo-Vanrley-Macedo.pdf",
-              image: { type: "jpeg", quality: 1 },
-              html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
-              jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-              pagebreak: { mode: ["css", "legacy"] },
-            })
-            .from(elemento)
-            .save()
-            .finally(() => {
-              botao.style.display = "block";
-            });
-        }
-
-        setTimeout(() => {
-          const resume = document.getElementById("resume");
-          resume.classList.remove("skeleton-active");
-          resume.classList.add("skeleton-inactive");
-        }, 2500);
-      </script>
-
-      <div class="print-btn">
-        <button onclick="gerarPDF()">Baixar</button>
-      </div>
-    </div>
-  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function gerarPDF(){
+      const el = document.getElementById('resume');
+      const btn = document.querySelector('.print-btn');
+      btn.style.display = 'none';
+      html2pdf().set({
+        margin: 0,
+        filename: 'Curriculo-Vanrley-Macedo.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'] }
+      }).from(el).save().finally(() => { btn.style.display = 'block'; });
+    }
+  </script>
+</body>
 </html>
-
-
-
-

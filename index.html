@@ -7,225 +7,186 @@
 <meta name="description" content="Vanrley Macedo — Desenvolvedor Full Stack. PHP, MySQL, MongoDB, React Native, TypeScript." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
+  /* =====================================================
+     PALETA — mexa só aqui pra trocar as cores do currículo
+     ===================================================== */
   :root{
-    --ink:#152238;
-    --ink-soft:#2c3e5c;
-    --sidebar:#122036;
-    --sidebar-soft:#8fa3c4;
-    --paper:#fbfaf7;
-    --line:#e4e0d6;
-    --accent:#e0973a;
-    --accent-soft:#f3d9ae;
-    --mono:'JetBrains Mono', monospace;
-    --disp:'Space Grotesk', sans-serif;
-    --body:'Inter', sans-serif;
+    --ink:       #1c2027;   /* texto principal */
+    --muted:     #5b6472;   /* texto secundário */
+    --line:      #e3e0d8;   /* linha da timeline / divisórias */
+    --paper:     #ffffff;   /* fundo da página */
+    --accent:    #8a2432;   /* cor de destaque (nome, labels, pontos) */
+    --accent-bg: #f7ece9;   /* fundo suave pra tag de data */
+
+    --font-display: 'Fraunces', serif;   /* fonte do nome e labels */
+    --font-body:    'Inter', sans-serif; /* fonte do corpo do texto */
+    --font-mono:    'JetBrains Mono', monospace; /* datas / detalhes técnicos */
   }
 
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
-    background:#d9d5c9;
-    font-family:var(--body);
+    background:#ded9cd;
+    font-family:var(--font-body);
     color:var(--ink);
     -webkit-font-smoothing:antialiased;
   }
 
   .page{
     width:210mm;
-    height:297mm;
+    min-height:297mm;
     margin:24px auto;
     background:var(--paper);
-    box-shadow:0 8px 40px rgba(0,0,0,.25);
-    display:flex;
-    align-items:stretch;
-    overflow:hidden;
+    box-shadow:0 8px 40px rgba(0,0,0,.22);
+    padding:20mm 18mm 16mm;
   }
 
-  /* ---------- SIDEBAR ---------- */
-  .sidebar{
-    background:var(--sidebar);
-    color:#eef1f6;
-    padding:9mm 7mm;
-    width:64mm;
-    flex:0 0 64mm;
-  }
-
-  .sidebar .avatar{
-    width:22mm;
-    height:22mm;
-    border-radius:6px;
-    overflow:hidden;
-    border:2px solid var(--accent);
-    margin-bottom:4mm;
-  }
-  .sidebar .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
-
-  .sidebar h1{
-    font-family:var(--disp);
-    font-size:15pt;
-    line-height:1.1;
-    margin:0 0 1.5mm;
-    color:#fff;
-  }
-  .role-tag{
-    font-family:var(--mono);
-    font-size:7.4pt;
+  /* ---------- HEADER ---------- */
+  header{margin-bottom:9mm;}
+  header h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:30pt;
     color:var(--accent);
-    letter-spacing:.03em;
-    margin-bottom:5mm;
-    display:block;
+    margin:0 0 1mm;
+    letter-spacing:-.01em;
+  }
+  header .role{
+    font-family:var(--font-body);
+    font-size:11pt;
+    color:var(--muted);
+    margin:0 0 4mm;
+  }
+  .contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5mm;
+    font-size:9pt;
+    color:var(--muted);
+  }
+  .contact-row span b{
+    font-family:var(--font-mono);
+    color:var(--accent);
+    font-weight:500;
+    margin-right:1.5mm;
   }
 
-  .side-block{margin-bottom:5mm;}
-  .side-block h2{
-    font-family:var(--mono);
-    font-size:7.4pt;
-    text-transform:uppercase;
-    letter-spacing:.1em;
-    color:var(--sidebar-soft);
-    margin:0 0 2.2mm;
-    padding-bottom:1.4mm;
-    border-bottom:1px solid rgba(255,255,255,.15);
+  /* ---------- TIMELINE ---------- */
+  .timeline{position:relative;}
+  .timeline::before{
+    content:'';
+    position:absolute;
+    top:5px;
+    bottom:5px;
+    left:132px;
+    width:1px;
+    background:var(--line);
   }
 
-  .contact-list{list-style:none;margin:0;padding:0;font-size:8pt;line-height:1.5;}
-  .contact-list li{display:flex;gap:2mm;color:#dfe4ee;}
-  .contact-list li b{color:var(--accent);font-family:var(--mono);font-weight:500;min-width:3mm;}
+  .row{
+    display:grid;
+    grid-template-columns:118px 1fr;
+    column-gap:28px;
+    margin-bottom:7mm;
+  }
+  .row:last-child{margin-bottom:0;}
 
-  .tag-cloud{display:flex;flex-wrap:wrap;gap:1.4mm;}
-  .tag{
-    font-family:var(--mono);
-    font-size:7pt;
-    color:#0e1929;
-    background:var(--accent-soft);
-    padding:1mm 2mm;
+  .row .label{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:10.5pt;
+    color:var(--accent);
+    text-align:right;
+    line-height:1.3;
+    padding-top:1px;
+  }
+
+  .row .content{position:relative;}
+  .row .content::before{
+    content:'';
+    position:absolute;
+    top:4px;
+    left:-19px;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--accent);
+  }
+
+  .lead{
+    font-size:9.6pt;
+    line-height:1.6;
+    color:var(--ink);
+    margin:0;
+  }
+
+  /* ---------- FORMAÇÃO ---------- */
+  .edu-title{font-weight:600;font-size:9.8pt;color:var(--ink);}
+  .edu-sub{font-size:8.6pt;color:var(--muted);margin-top:.5mm;}
+  .edu-extra{font-size:8.6pt;color:var(--muted);margin-top:2mm;}
+
+  /* ---------- EXPERIÊNCIA ---------- */
+  .job-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:2mm;
+    margin-bottom:.5mm;
+  }
+  .job-title{font-weight:700;font-size:10pt;color:var(--ink);}
+  .job-org{font-size:8.8pt;color:var(--muted);margin-bottom:2mm;}
+  .job-time{
+    font-family:var(--font-mono);
+    font-size:7.6pt;
+    color:var(--accent);
+    background:var(--accent-bg);
+    padding:.6mm 2mm;
     border-radius:3px;
     white-space:nowrap;
   }
-  .tag.alt{background:rgba(255,255,255,.12);color:#eef1f6;}
+  .row ul{margin:0;padding-left:3.6mm;}
+  .row li{font-size:8.8pt;line-height:1.5;color:var(--ink);margin-bottom:1mm;}
+  .row li::marker{color:var(--accent);}
 
-  .edu-item{margin-bottom:2.4mm;font-size:8pt;line-height:1.4;}
-  .edu-item .t{color:#fff;font-weight:600;}
-  .edu-item .d{color:var(--sidebar-soft);font-family:var(--mono);font-size:7pt;}
-
-  .lang-row{display:flex;justify-content:space-between;font-size:8pt;margin-bottom:1.6mm;color:#dfe4ee;}
-  .lang-row span:last-child{color:var(--accent);font-family:var(--mono);font-size:7pt;}
-
-  /* ---------- MAIN ---------- */
-  .main{padding:9mm 11mm; flex:1 1 auto; min-width:0;}
-
-  .path{
-    font-family:var(--mono);
-    font-size:7.2pt;
-    color:var(--ink-soft);
-    margin:0 0 4mm;
-    letter-spacing:.02em;
+  .older-list{margin-top:4mm;padding-top:3mm;border-top:1px dashed var(--line);}
+  .older-list .h3{
+    font-family:var(--font-mono);
+    font-size:7.4pt;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--muted);
+    margin-bottom:2mm;
   }
-  .path span{color:var(--accent);}
+  .older-row{font-size:8.4pt;color:var(--muted);margin-bottom:1.4mm;}
+  .older-row b{color:var(--ink);font-weight:600;}
+  .older-row span{font-family:var(--font-mono);font-size:7.4pt;color:#9aa2ac;}
 
-  .main h2{
-    font-family:var(--disp);
-    font-size:10.5pt;
-    color:var(--ink);
-    margin:0 0 2.4mm;
-    display:flex;
-    align-items:baseline;
-    gap:2.5mm;
-  }
-  .main h2::before{
-    content:'';
-    width:5.5mm;
-    height:2.2px;
-    background:var(--accent);
-    display:inline-block;
-  }
-
-  .section{margin-bottom:4.5mm;}
-
-  .summary{
-    font-size:8.8pt;
-    line-height:1.5;
-    color:var(--ink-soft);
-    margin:0;
-  }
-
-  .job{margin-bottom:3.5mm;}
-  .job:last-child{margin-bottom:0;}
-  .job-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    flex-wrap:wrap;
-    gap:2mm;
-    margin-bottom:1mm;
-  }
-  .job-title{font-family:var(--disp);font-weight:600;font-size:9.2pt;color:var(--ink);}
-  .job-time{font-family:var(--mono);font-size:7.2pt;color:var(--accent);background:#fbf1e2;padding:.7mm 1.8mm;border-radius:3px;}
-  .job-org{font-size:8pt;color:var(--ink-soft);font-weight:600;margin-bottom:1.4mm;}
-
-  .job ul{margin:0;padding-left:4mm;}
-  .job li{font-size:8.3pt;line-height:1.42;color:var(--ink-soft);margin-bottom:.8mm;}
-  .job li::marker{color:var(--accent);}
-
-  .job-tags{display:flex;flex-wrap:wrap;gap:1.2mm;margin-top:1.6mm;}
-  .job-tags .tag{background:#eef1f6;color:var(--ink-soft);}
-
-  .job.compact .job-title{font-size:9pt;}
-  .job.compact{opacity:.92;}
-
-  .flagship{
-    display:flex;
-    gap:3mm;
-    margin-top:1.6mm;
-  }
-  .flagship-card{
-    border:1px solid var(--line);
-    border-left:2.5px solid var(--accent);
-    border-radius:4px;
-    padding:2.4mm 3.2mm;
-    background:#fff;
-    flex:1 1 0;
-    min-width:0;
-  }
-  .flagship-card .name{
-    font-family:var(--disp);
-    font-weight:600;
-    font-size:8.4pt;
-    color:var(--ink);
+  /* ---------- HABILIDADES ---------- */
+  .skill-line{font-size:8.9pt;line-height:1.7;color:var(--ink);margin-bottom:2mm;}
+  .skill-line:last-child{margin-bottom:0;}
+  .skill-line b{
+    font-family:var(--font-mono);
+    font-weight:500;
+    color:var(--accent);
+    font-size:7.8pt;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    display:block;
     margin-bottom:.8mm;
   }
-  .flagship-card p{
-    font-size:7.6pt;
-    color:var(--ink-soft);
-    line-height:1.4;
-    margin:0;
-  }
 
-  .older-roles{margin-top:3mm;padding-top:2.2mm;border-top:1px dashed var(--line);}
-  .older-roles h3{
-    font-family:var(--mono);
-    font-size:7.2pt;
-    text-transform:uppercase;
-    letter-spacing:.1em;
-    color:var(--ink-soft);
-    margin:0 0 1.8mm;
-  }
-  .older-grid{display:flex;flex-direction:column;gap:1.2mm;}
-  .older-row{display:flex;justify-content:space-between;font-size:7.8pt;color:var(--ink-soft);}
-  .older-row b{color:var(--ink);font-weight:600;}
-  .older-row span{font-family:var(--mono);font-size:7pt;color:#9aa7bd;}
+  /* ---------- INFO ADICIONAL ---------- */
+  .info-line{font-size:8.9pt;color:var(--ink);}
+  .info-line + .info-line{margin-top:1mm;}
 
-  .print-btn{
-    position:fixed;
-    top:16px;
-    right:16px;
-    z-index:50;
-  }
+  .print-btn{position:fixed;top:16px;right:16px;z-index:50;}
   .print-btn button{
-    font-family:var(--body);
+    font-family:var(--font-body);
     font-weight:600;
     font-size:13px;
     background:var(--ink);
@@ -236,27 +197,23 @@
     cursor:pointer;
     box-shadow:0 4px 14px rgba(0,0,0,.25);
   }
-  .print-btn button:hover{background:var(--accent);color:#152238;}
+  .print-btn button:hover{background:var(--accent);}
 
   @media print{
-    @page{ size: A4; margin: 0; }
-    html,body{background:#fff; height:297mm; overflow:hidden;}
-    .page{box-shadow:none;margin:0;width:210mm;height:297mm;}
+    @page{ size:A4; margin:0; }
+    html,body{background:#fff;}
+    .page{box-shadow:none;margin:0;width:210mm;min-height:297mm;}
     .print-btn{display:none !important;}
-    .side-block, .job, .flagship-card, .older-roles, .section{
-      break-inside:avoid;
-      page-break-inside:avoid;
-    }
-    *{
-      -webkit-print-color-adjust:exact;
-      print-color-adjust:exact;
-      color-adjust:exact;
-    }
+    .row{break-inside:avoid;page-break-inside:avoid;}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;}
   }
 
   @media (max-width:800px){
-    .page{width:100%;grid-template-columns:1fr;}
-    .flagship{grid-template-columns:1fr;}
+    .page{width:100%;padding:8mm;}
+    .row{grid-template-columns:1fr;column-gap:0;}
+    .row .label{text-align:left;margin-bottom:1mm;}
+    .timeline::before{display:none;}
+    .row .content::before{display:none;}
   }
 </style>
 </head>
@@ -264,131 +221,87 @@
 
   <div class="page" id="resume">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <div class="avatar">
-        <img src="https://i.postimg.cc/c4KT32d3/Gemini-Generated-Image-ibv3gvibv3gvibv3.png" alt="Vanrley Macedo" />
+    <header>
+      <h1>Vanrley Macedo</h1>
+      <p class="role">Desenvolvedor Full Stack — PHP · React Native · MongoDB</p>
+      <div class="contact-row">
+        <span><b>Tel</b>(98) 97018-0089</span>
+        <span><b>Tel</b>(98) 98582-1937</span>
+        <span><b>Mail</b>vntecnologialtda@gmail.com</span>
+        <span><b>Local</b>São Luís — MA</span>
       </div>
+    </header>
 
-      <h1>Vanrley<br/>Macedo</h1>
-      <span class="role-tag">// desenvolvedor full stack</span>
+    <div class="timeline">
 
-      <div class="side-block">
-        <h2>Contato</h2>
-        <ul class="contact-list">
-          <li><b>T</b> (98) 97018-0089</li>
-          <li><b>T</b> (98) 98582-1937</li>
-          <li><b>@</b> vntecnologialtda@gmail.com</li>
-          <li><b>L</b> Paço do Lumiar / São Luís — MA</li>
-        </ul>
-      </div>
-
-      <div class="side-block">
-        <h2>Stack principal</h2>
-        <div class="tag-cloud">
-          <span class="tag">PHP</span>
-          <span class="tag">MySQL</span>
-          <span class="tag">MongoDB</span>
-          <span class="tag">React Native</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">React</span>
-          <span class="tag">Expo</span>
-          <span class="tag">Tailwind</span>
-          <span class="tag">Bootstrap</span>
-          <span class="tag">CSS</span>
-          <span class="tag">Git</span>
+      <div class="row">
+        <div class="label">Resumo</div>
+        <div class="content">
+          <p class="lead">
+            Desenvolvedor Full Stack com foco em produtos que unem PHP e React Native, do
+            banco de dados à interface. Construiu e mantém um painel SaaS (PanelNix) e um
+            launcher para Android TV (Vlauncher) em produção, cobrindo API REST, autenticação,
+            MongoDB/MySQL e front-end mobile.
+          </p>
         </div>
       </div>
 
-      <div class="side-block">
-        <h2>Formação</h2>
-        <div class="edu-item">
-          <div class="t">Análise e Desenvolvimento de Sistemas</div>
-          <div class="d">Descomplica Faculdade · 2024–2026 (em curso)</div>
-        </div>
-        <div class="edu-item">
-          <div class="t">Ensino Médio Completo</div>
+      <div class="row">
+        <div class="label">Formação<br/>Acadêmica</div>
+        <div class="content">
+          <div class="edu-title">Análise e Desenvolvimento de Sistemas</div>
+          <div class="edu-sub">Descomplica Faculdade · 2024–2026 (em curso)</div>
+          <div class="edu-extra">Ensino Médio Completo</div>
         </div>
       </div>
 
-      <div class="side-block">
-        <h2>Cursos complementares</h2>
-        <div class="tag-cloud">
-          <span class="tag alt">Backend Developer</span>
-          <span class="tag alt">Lógica de Programação</span>
-          <span class="tag alt">DevOps Strategist</span>
-          <span class="tag alt">Programmer</span>
-        </div>
-      </div>
-
-      <div class="side-block">
-        <h2>Perfil</h2>
-        <div class="lang-row"><span>CNH B</span><span>Definitiva</span></div>
-        <div class="lang-row"><span>Idade</span><span>25 anos</span></div>
-      </div>
-    </aside>
-
-    <!-- MAIN -->
-    <main class="main">
-      <p class="path">~/vanrley-macedo/<span>curriculo.tsx</span></p>
-
-      <section class="section">
-        <h2>Resumo</h2>
-        <p class="summary">
-          Desenvolvedor Full Stack com foco em produtos que unem backend em PHP/MySQL/MongoDB
-          a aplicações React Native para mobile e TV. Atua do banco de dados à interface,
-          construindo painéis administrativos SaaS, apps para Android TV e sistemas de
-          autenticação e billing usados em produção. Gosta de resolver problemas de ponta a
-          ponta e entregar código direto, testado e pronto para uso.
-        </p>
-      </section>
-
-      <section class="section">
-        <h2>Experiência</h2>
-
-        <div class="job">
+      <div class="row">
+        <div class="label">Experiência</div>
+        <div class="content">
           <div class="job-head">
             <span class="job-title">Programador Full Stack</span>
             <span class="job-time">1 ano e 10 meses</span>
           </div>
           <div class="job-org">Join Partners Tecnologia LTDA</div>
           <ul>
-            <li>Desenvolvimento full stack de um painel SaaS (PHP + MySQL/MongoDB) para gestão de dispositivos, créditos e conteúdo, incluindo autenticação, recuperação de senha e branding dinâmico por cliente.</li>
-            <li>Construção de um app launcher para Android TV em React Native/TypeScript, com carrossel de banners promocionais, cache de sessão local e sincronização em segundo plano com a API.</li>
-            <li>Criação de módulo reutilizável de paginação e ordenação de tabelas, padronizando UI entre múltiplas telas do painel administrativo.</li>
-            <li>Implementação de scraper de metadados da Play Store (cURL/DOMDocument) com painel de diagnóstico para falhas do lado do servidor.</li>
-            <li>Manutenção de plataforma white-label baseada em MongoDB, com configuração dinâmica por origem/cliente e compatibilidade PHP 7.x.</li>
+            <li>Painel SaaS (PanelNix) em PHP, MySQL e MongoDB para gestão de dispositivos, créditos e clientes, com autenticação e branding dinâmico por cliente.</li>
+            <li>Launcher para Android TV (Vlauncher) em React Native/TypeScript, com carrossel de banners, cache local e sincronização em segundo plano.</li>
+            <li>Módulo reutilizável de paginação/ordenação e scraper de metadados da Play Store para automação interna.</li>
           </ul>
-          <div class="job-tags">
-            <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">MongoDB</span>
-            <span class="tag">React Native</span><span class="tag">TypeScript</span><span class="tag">REST API</span>
-          </div>
-        </div>
 
-        <div class="flagship">
-          <div class="flagship-card">
-            <div class="name">PanelNix</div>
-            <p>Painel administrativo SaaS em PHP para gestão de dispositivos, créditos, banners e clientes, com dashboards, relatórios e sistema de temas por marca.</p>
-          </div>
-          <div class="flagship-card">
-            <div class="name">Vlauncher</div>
-            <p>Launcher Android TV em React Native/TypeScript, com carregamento de conteúdo em cache, banners promocionais e reconexão automática de rede.</p>
-          </div>
-        </div>
-
-        <div class="older-roles">
-          <h3>Experiências anteriores</h3>
-          <div class="older-grid">
-            <div class="older-row"><b>Técnico de Rede Interna II</b> — Telecomunicações Nordeste LTDA <span>3 anos</span></div>
-            <div class="older-row"><b>Técnico de Laboratório</b> — Telecomunicações Nordeste LTDA <span>3 anos</span></div>
+          <div class="older-list">
+            <div class="h3">Experiências anteriores</div>
+            <div class="older-row"><b>Técnico de Rede Interna / Laboratório</b> — Telecomunicações Nordeste LTDA <span>6 anos</span></div>
             <div class="older-row"><b>Técnico de Informática B</b> — C.D Souza de Melo Farias LTDA <span>9 meses</span></div>
             <div class="older-row"><b>Auxiliar Eletromecânico</b> — RDS Instalações Elétricas LTDA <span>6 meses</span></div>
           </div>
         </div>
-      </section>
+      </div>
 
-    </main>
+      <div class="row">
+        <div class="label">Habilidades</div>
+        <div class="content">
+          <div class="skill-line"><b>Back-end</b>PHP, MySQL, MongoDB, REST API</div>
+          <div class="skill-line"><b>Front-end / Mobile</b>React, React Native, TypeScript, JavaScript, Expo, Tailwind, Bootstrap, CSS</div>
+          <div class="skill-line"><b>Ferramentas</b>Git</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">Cursos</div>
+        <div class="content">
+          <p class="lead">Full Stack e Backend Developer (Descomplica) · Lógica de Programação (Tryber) · DevOps Strategist (Descomplica)</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">Informações<br/>Adicionais</div>
+        <div class="content">
+          <div class="info-line">CNH B — Definitiva</div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <div class="print-btn">
@@ -396,8 +309,8 @@
   </div>
 
   <script>
-    // Dica: na janela de impressão, marque "Gráficos de segundo plano" /
-    // "Background graphics" para o PDF sair com as mesmas cores do site.
+    // Na janela de impressão, ative "Gráficos de segundo plano" / "Background graphics"
+    // pra manter a cor de destaque no PDF. Formato: A4, margens 0.
   </script>
 </body>
 </html>

@@ -206,7 +206,9 @@
     .page{margin:0;width:210mm;min-height:297mm;border:1px solid var(--line);border-top:4px solid var(--accent);}
     .print-btn{display:none !important;}
     .row{break-inside:avoid;page-break-inside:avoid;}
-    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;}
+    .timeline::before{background:var(--line) !important;}
+    .row .content::before{background:var(--paper) !important;border-color:var(--accent) !important;}
+    *, *::before, *::after{-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;}
   }
 
   @media (max-width:800px){
